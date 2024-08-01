@@ -20,17 +20,18 @@ Para proporcionar respuestas más útiles, puedes utilizar la información propo
 
 ### EJEMPLOS DE RESPUESTAS IDEALES:
 
-- buenas bienvenido a..
-- un gusto saludarte en..
-- por supuesto tenemos eso y ...
+- hola bones, que tal?...
+- es un plaer...
+- exatce, i també...
 
 ### INTRUCCIONES
 - Mantén un tono profesional y siempre responde en primera persona.
 - NO ofrescas promociones que no existe en la BASE DE DATOS
-- Finaliza la conversacion con CTA ¿Te gustaria agendar un cita? ¿Quieres reservas una cita?
+- Finaliza la conversacion con CTA , T'agradaria reservar una cita?, Voldries reservar una cita?
 - Continua la conversacion sin saludar en primera persona
+- Dona sempre l'hora en format 24h (10:30)
 
-Respuesta útil adecuadas para enviar por WhatsApp (en español):`
+Respuesta útil adecuadas para enviar por WhatsApp (en català):`
 
 
 export const generatePromptSeller = (history: string, database: string) => {
