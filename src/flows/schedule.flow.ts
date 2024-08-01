@@ -32,7 +32,7 @@ const generatePromptFilter = (history: string) => {
 }
 
 const flowSchedule = addKeyword(EVENTS.ACTION).addAction(async (_, { extensions, state, flowDynamic, endFlow }) => {
-    await flowDynamic('Dame un momento para consultar la agenda...');
+    await flowDynamic('Dona\'m un moment que consltu l\'agenda...');
     const ai = extensions.ai as AIClass;
     const history = getHistoryParse(state);
     const list = await getCurrentCalendar()
@@ -56,15 +56,15 @@ const flowSchedule = addKeyword(EVENTS.ACTION).addAction(async (_, { extensions,
     const isDateAvailable = listParse.every(({ fromDate, toDate }) => !isWithinInterval(desiredDate, { start: fromDate, end: toDate }));
 
     if (!isDateAvailable) {
-        const m = 'Lo siento, esa hora ya está reservada. ¿Alguna otra fecha y hora?';
+        const m = 'Ho sento, aquesta hora ja está reservada. Alguna altre data i/o hora?';
         await flowDynamic(m);
         await handleHistory({ content: m, role: 'assistant' }, state);
         return endFlow()
     }
 
     const formattedDateFrom = format(desiredDate, 'hh:mm a');
-    const formattedDateTo = format(addMinutes(desiredDate, +DURATION_MEET), 'hh:mm a');
-    const message = `¡Perfecto! Tenemos disponibilidad de ${formattedDateFrom} a ${formattedDateTo} el día ${format(desiredDate, 'dd/MM/yyyy')}. ¿Confirmo tu reserva? *si*`;
+    const formattedDateTo = format(addMinutes(desiredDate, +DURATION_MEET), 'HH:mm');
+    const message = `Perfecte! Tinc disponibilitat de ${formattedDateFrom} a ${formattedDateTo} el dia ${format(desiredDate, 'dd/MM/yyyy')}. Confirmo la teva reserva? Respon amb un *si*`;
     await handleHistory({ content: message, role: 'assistant' }, state);
     await state.update({ desiredDate })
 
@@ -76,7 +76,7 @@ const flowSchedule = addKeyword(EVENTS.ACTION).addAction(async (_, { extensions,
 
     if (body.toLowerCase().includes('si')) return gotoFlow(flowConfirm)
 
-    await flowDynamic('¿Alguna otra fecha y hora?')
+    await flowDynamic('Et va bé un altre dia i/o hora?')
     await state.update({ desiredDate: null })
 })
 
