@@ -10,22 +10,22 @@ const TIME_ZONE = process.env.TZ
  * Encargado de pedir los datos necesarios para registrar el evento en el calendario
  */
 const flowConfirm = addKeyword(EVENTS.ACTION).addAction(async (_, { flowDynamic }) => {
-    await flowDynamic('Ok, voy a pedirte unos datos para agendar')
-    await flowDynamic('¿Cual es tu nombre?')
+    await flowDynamic('Ok, et demanaré algunes dades per agendar!')
+    await flowDynamic('Com et dius?')
 }).addAction({ capture: true }, async (ctx, { state, flowDynamic, endFlow }) => {
 
     if (ctx.body.toLocaleLowerCase().includes('cancelar')) {
         clearHistory(state)
-        return endFlow(`¿Como puedo ayudarte?`)
+        return endFlow(`Com puc ajudar-te?`)
 
     }
     await state.update({ name: ctx.body })
-    await flowDynamic(`Ultima pregunta ¿Cual es tu email?`)
+    await flowDynamic(`Ultima pregunta, com és el teu correu electrònic?`)
 })
     .addAction({ capture: true }, async (ctx, { state, flowDynamic, fallBack }) => {
 
         if (!ctx.body.includes('@')) {
-            return fallBack(`Debes ingresar un mail correcto`)
+            return fallBack(`Necessito que el correu estigui ben escrit, si us plau`)
         }
 
         const dateObject = {
@@ -39,7 +39,7 @@ const flowConfirm = addKeyword(EVENTS.ACTION).addAction(async (_, { flowDynamic 
         await appToCalendar(dateObject)
 
         clearHistory(state)
-        await flowDynamic('Listo! agendado Buen dia')
+        await flowDynamic('Genial, apuntat! Que tinguis un bon dia')
     })
 
 export { flowConfirm }
