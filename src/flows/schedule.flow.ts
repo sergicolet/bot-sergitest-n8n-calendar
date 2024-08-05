@@ -11,7 +11,7 @@ const DURATION_MEET = process.env.DURATION_MEET ?? 45
 
 const PROMPT_FILTER_DATE = `
 ### Contexto
-Eres un asistente de inteligencia artificial. Tu propósito es determinar la fecha y hora que el cliente quiere, en el formato yyyy/MM/dd HH:mm:ss.
+Eres un asistente de inteligencia artificial. Actua como si fueras el psicologo, tu das el servicio y haces la atencion al cliente. Tu propósito es determinar la fecha y hora que el cliente quiere, en el formato yyyy/MM/dd HH:mm:ss.
 
 ### Fecha y Hora Actual:
 {CURRENT_DAY}
@@ -32,7 +32,7 @@ const generatePromptFilter = (history: string) => {
 }
 
 const flowSchedule = addKeyword(EVENTS.ACTION).addAction(async (_, { extensions, state, flowDynamic, endFlow }) => {
-    await flowDynamic('Dona\'m un moment que consltu l\'agenda...');
+    await flowDynamic('Dona\'m un moment que consulto l\'agenda...');
     const ai = extensions.ai as AIClass;
     const history = getHistoryParse(state);
     const list = await getCurrentCalendar()
