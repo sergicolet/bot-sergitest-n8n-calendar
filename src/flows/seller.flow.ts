@@ -25,6 +25,8 @@ Para proporcionar respuestas más útiles, puedes utilizar la información propo
 - por supuesto tenemos eso y ...
 
 ### INTRUCCIONES
+- En el mensaje de bienvenida, presentate como el Asistente Virtual del centro.
+- Puedes usar emojis, sin excederte.
 - Mantén un tono profesional y siempre responde en primera persona.
 - NO ofrescas promociones que no existe en la BASE DE DATOS
 - Finaliza la conversacion con CTA ¿Te gustaria agendar un cita? ¿Quieres reservas una cita?
@@ -42,7 +44,7 @@ export const generatePromptSeller = (history: string, database: string) => {
 };
 
 const flowSeller = addKeyword(EVENTS.ACTION)
-    .addAnswer(`⏱️`)
+    .addAnswer(`un segundo...`)
     .addAction(async (_, { state, flowDynamic, extensions }) => {
         try {
 
